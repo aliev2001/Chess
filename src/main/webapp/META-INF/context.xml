@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+	<Resource 
+		name="jdbc/j2a"
+		auth="Container"
+		type="javax.sql.DataSource"
+		driverClassName="org.postgresql.Driver"
+		maxActive="10"
+		maxIdle="4"
+		url="jdbc:postgresql://localhost:5432/j2a"
+		username="postgres"
+		password=""
+	/>
+</Context>
