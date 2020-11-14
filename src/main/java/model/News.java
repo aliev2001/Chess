@@ -8,6 +8,13 @@ public class News {
 	public String text;
 	public Date date;
 
+	public News(long id, String title, String text, Date date) {
+		this.id = id;
+		this.title = title;
+		this.text = text;
+		this.date = date;
+	}
+
 	public long getId() {
 		return id;
 	}
