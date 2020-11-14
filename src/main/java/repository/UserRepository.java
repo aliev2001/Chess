@@ -248,7 +248,33 @@ public class UserRepository implements IUserRepository {
 						.setYear(rs.getInt("year"))
 						.setUGroup(rs.getString("uGroup"))
 						.setIsAdmin(rs.getBoolean("isAdmin"))
-            .build();
-  }
+						.build();
+	}
 
+	@Override
+	public List<User> search(String group, String major, int year) {
+		String sql = "SELECT * FROM users WHERE \"uGroup\"~*? AND major~*?";
+		if(year != 0){
+			sql += " AND year=?";
+		}
+		List<User> users = new ArrayList<>();
+		try {
+			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
+			if(group != null) stmt.setString(1, group);
+			else stmt.setString(1, ".*");
+
+			if(major != null) stmt.setString(2, major);
+			else stmt.setString(2, ".*");
+
+			if(year != 0) stmt.setInt(3, year);
+
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				users.add(createUserByResultSet(rs));
+			}
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+		return users;
+	}
 }
