@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class NewsController extends HttpServlet {
+public class UserController extends HttpServlet {
 
 	/**
 	 *
@@ -16,23 +16,20 @@ public class NewsController extends HttpServlet {
 
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  String route = request.getPathInfo().replaceAll("\\/$", "").replaceAll("^\\/", "");
+
 		switch(route){
 			case "create":
-				break;
-			case "edit":
+				System.out.println("create user");
 				break;
 			case "delete":
+				System.out.println("delete user");
+				break;
+			case "edit":
+				System.out.println("edit user");
 				break;
 			default:
-				break;
 		}
-		doGet(request, response);
-	}
-
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("pages/news.jsp").forward(request, response);
 	}
 }

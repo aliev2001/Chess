@@ -48,6 +48,15 @@
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>user</servlet-name>
+        <servlet-class>controller.UserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>user</servlet-name>
+				<url-pattern>/user/*</url-pattern>
+    </servlet-mapping>
+
     <error-page>
         <error-code>401</error-code>
         <location>/pages/errors/401.jsp</location>

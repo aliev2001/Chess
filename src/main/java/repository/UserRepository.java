@@ -1,6 +1,5 @@
 package repository;
 
-import model.Item;
 import model.User;
 import repository.interfaces.IDBRepository;
 import repository.interfaces.IUserRepository;
@@ -42,9 +41,7 @@ public class UserRepository implements IUserRepository {
       stmt.setLong(1, id);
 
       ResultSet rs = stmt.executeQuery();
-      if (rs.next()){
-        return createUserByResultSet(rs);
-      }
+      if (rs.next()) return createUserByResultSet(rs);
     } catch(SQLException e){ System.out.println("Bad request"); }
     return null;
   }
@@ -55,7 +52,7 @@ public class UserRepository implements IUserRepository {
     try {
       PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
       stmt.setLong(1, id);
-      if(stmt.executeUpdate() > 1){
+      if(stmt.executeUpdate() > 0){
         return true;
       }
     } catch(SQLException e){
