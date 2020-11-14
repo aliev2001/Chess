@@ -1,12 +1,16 @@
 package repository;
 
+import model.Item;
 import model.User;
 import repository.interfaces.IDBRepository;
 import repository.interfaces.IUserRepository;
 
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserRepository implements IUserRepository {
   private final IDBRepository dbRepository = PostgresRepository.getInstance();
@@ -41,9 +45,7 @@ public class UserRepository implements IUserRepository {
       if (rs.next()){
         return createUserByResultSet(rs);
       }
-    } catch(SQLException e){
-      System.out.println("Bad request");
-    }
+    } catch(SQLException e){ System.out.println("Bad request"); }
     return null;
   }
 
@@ -139,6 +141,105 @@ public class UserRepository implements IUserRepository {
     return null;
   }
 
+	@Override
+	public List<User> getAll() {
+		List<User> users = new ArrayList<>();
+		String sql = "SELECT * FROM users";
+		try {
+			Statement stmt = dbRepository.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				users.add(createUserByResultSet(rs));
+			}
+		} catch(SQLException e){
+			System.out.println(e);
+		}
+		return users;
+	}
+
+	@Override
+	public List<User> getAllByGroup(String group) {
+		List<User> users = new ArrayList<>();
+		String sql = "SELECT * FROM users WHERE group = ?";
+		try {
+			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
+			stmt.setString(1, group);
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				users.add(createUserByResultSet(rs));
+			}
+		} catch(SQLException e){
+			System.out.println(e);
+		}
+		return users;
+	}
+
+	@Override
+	public List<User> getAllByMajor(String major) {
+		List<User> users = new ArrayList<>();
+		String sql = "SELECT * FROM users WHERE major = ?";
+		try {
+			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
+			stmt.setString(1, major);
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				users.add(createUserByResultSet(rs));
+			}
+		} catch(SQLException e){
+			System.out.println(e);
+		}
+		return users;
+	}
+
+	@Override
+	public List<User> getAllbyYear(int year) {
+		List<User> users = new ArrayList<>();
+		String sql = "SELECT * FROM users WHERE year = ?";
+		try {
+			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
+			stmt.setInt(1, year);
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				users.add(createUserByResultSet(rs));
+			}
+		} catch(SQLException e){
+			System.out.println(e);
+		}
+		return users;
+	}
+
+	@Override
+	public List<String> getGroups() {
+		List<String> groups = new ArrayList<>();
+		String sql = "SELECT distinct group FROM users";
+		try {
+			Statement stmt = dbRepository.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				groups.add(rs.getString("group"));
+			}
+		} catch(SQLException e){
+			System.out.println("BAD BAD GIRL");
+		}
+		return groups;
+	}
+
+	@Override
+	public List<String> getMajors() {
+		List<String> majors = new ArrayList<>();
+		String sql = "SELECT distinct major FROM users";
+		try {
+			Statement stmt = dbRepository.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				majors.add(rs.getString("major"));
+			}
+		} catch(SQLException e){
+			System.out.println("BAD BAD REQUEST");
+		}
+		return majors;
+	}
+
   protected User createUserByResultSet(ResultSet rs) throws SQLException {
     return new User.UserBuilder()
             .setId(rs.getLong("id"))
@@ -152,4 +253,5 @@ public class UserRepository implements IUserRepository {
 						.setIsAdmin(rs.getBoolean("isAdmin"))
             .build();
   }
+
 }
