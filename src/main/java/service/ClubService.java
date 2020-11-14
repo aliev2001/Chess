@@ -1,32 +1,34 @@
 package service;
 
 import model.Club;
+import model.User;
+import repository.ClubRepository;
+import repository.interfaces.IClubRepository;
 import service.interfaces.IClubService;
 
 public class ClubService implements IClubService {
 
+	private final IClubRepository clubRepository = new ClubRepository();
+
 	@Override
+
 	public Club read(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return clubRepository.read(id);
 	}
 
 	@Override
 	public boolean create(Club user) {
-		// TODO Auto-generated method stub
-		return false;
+		return clubRepository.create(user);
 	}
 
 	@Override
 	public boolean delete(long id) {
-		// TODO Auto-generated method stub
-		return false;
+		return clubRepository.delete(id);
 	}
 
 	@Override
 	public boolean edit(Club user) {
-		// TODO Auto-generated method stub
-		return false;
+		return clubRepository.edit(user);
 	}
 
 }

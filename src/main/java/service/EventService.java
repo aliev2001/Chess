@@ -1,31 +1,31 @@
 package service;
 
 import model.Event;
+import repository.EventRepository;
+import repository.interfaces.IEventRepository;
 import service.interfaces.IEventService;
 
 public class EventService implements IEventService {
 
+	private final IEventRepository eventRepository = new EventRepository();
+
 	@Override
 	public Event read(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return eventRepository.read(id);
 	}
 
 	@Override
 	public boolean create(Event user) {
-		// TODO Auto-generated method stub
-		return false;
+		return eventRepository.create(user);
 	}
 
 	@Override
 	public boolean delete(long id) {
-		// TODO Auto-generated method stub
-		return false;
+		return eventRepository.delete(id);
 	}
 
 	@Override
 	public boolean edit(Event user) {
-		// TODO Auto-generated method stub
-		return false;
+		return eventRepository.edit(user);
 	}
 }

@@ -16,7 +16,7 @@ public class EventRepository implements IEventRepository {
 
 	@Override
 	public Event read(long id) {
-		String sql = "SELECT * FROM club WHERE id = ?";
+		String sql = "SELECT * FROM event WHERE id = ?";
 		try {
 			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
 			stmt.setLong(1, id);
@@ -31,7 +31,7 @@ public class EventRepository implements IEventRepository {
 
 	@Override
 	public boolean create(Event entity) {
-		String sql = "INSERT INTO club (tite, description, \"date\") VALUES (?, ?, ?)";
+		String sql = "INSERT INTO event (tite, description, \"date\") VALUES (?, ?, ?)";
 		try {
 			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
 			stmt.setString(1, entity.getTitle());
