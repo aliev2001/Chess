@@ -15,9 +15,12 @@ public class ClubController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private final IClubRepository clubRepository = new ClubRepository();
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String route = request.getPathInfo().replaceAll("\\/$", "").replaceAll("^\\/", "");
+	  String route = request.getPathInfo();
+		if(route != null) route = route.replaceAll("\\/$", "").replaceAll("^\\/", "");
+		else route = "";
 		switch(route){
 			case "read":
 				int id1 = Integer.parseInt(request.getParameter("id"));
@@ -52,18 +55,18 @@ public class ClubController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String route = request.getPathInfo().replaceAll("\\/$", "").replaceAll("^\\/", "");
+	  String route = request.getPathInfo();
+		if(route != null) route = route.replaceAll("\\/$", "").replaceAll("^\\/", "");
+		else route = "";
 		switch(route){
 			case "read":
-
 				break;
 
 			case "create":
-				request.getRequestDispatcher("pages/club/create.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/club/create.jsp").forward(request, response);
 				break;
-
 			case "edit":
-				request.getRequestDispatcher("pages/club/edit.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/club/edit.jsp").forward(request, response);
 				break;
 
 			case "delete":
@@ -72,6 +75,6 @@ public class ClubController extends HttpServlet {
 			default:
 				break;
 		}
-		request.getRequestDispatcher("pages/club.jsp").forward(request, response);
+		// request.getRequestDispatcher("pages/club.jsp").forward(request, response);
 	}
 }

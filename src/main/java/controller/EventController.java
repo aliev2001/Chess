@@ -38,11 +38,13 @@ public class EventController extends HttpServlet {
 					eventRepository.create(event);
 				break;
 			case "edit":
+					long i = Long.parseLong(request.getParameter("id"));
 					String title1 = request.getParameter("title");
 					String text1 = request.getParameter("text");
 					String sdate1 = request.getParameter("date");
 
 					Event e = new Event();
+					e.setId(i);
 					e.setTitle(title1);
 					e.setText(text1);
 					e.setDate(Date.valueOf(sdate1));
@@ -64,6 +66,7 @@ public class EventController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String route = request.getPathInfo();
 		if(route != null) route = route.replaceAll("\\/$", "").replaceAll("^\\/", "");
+		int id = 0;
 		switch(route){
 			case "read":
 				break;
@@ -71,10 +74,13 @@ public class EventController extends HttpServlet {
 				request.getRequestDispatcher("/pages/event/create.jsp").forward(request, response);
 				break;
 			case "edit":
+				if(request.getParameter("id") != null) id = Integer.parseInt(request.getParameter("id"));
+				else id = 0;
+				request.setAttribute("event", eventRepository.read(id));
 				request.getRequestDispatcher("/pages/event/edit.jsp").forward(request, response);
 				break;
 			case "delete":
-				int id = Integer.parseInt(request.getParameter("id"));
+				id = Integer.parseInt(request.getParameter("id"));
 				System.out.println("DELET "  + id);
 				eventRepository.delete(id);
 				break;

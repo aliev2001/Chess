@@ -5,5 +5,4 @@ target/
 .classpath
 .project
 .vimspector.json
-src/main/webapp/assets/scss/*
-src/main/webapp/assets/img/*
+src/main/webapp/assets/

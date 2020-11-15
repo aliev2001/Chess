@@ -2,16 +2,14 @@
 <html>
 	<%@ include file='../includes/head.jsp' %>
 	<body>
-		<div class='container-fluid mt-4'>
+		<%@ include file='../includes/header.jsp' %>
+		<div class='container-md mt-4'>
 
 			<div class="row">
-				<div class="col-2">
-					<h3>Sidebar</h3>
-				</div>
-				<div class="col-7">
+				<div class="col-8">
 					<h3>News</h3>
 					<c:forEach var="news" items="${ requestScope.news }">
-						<div class="card">
+						<div class="card mb-4">
 							<div class="card-body">
 								<h5 class="card-title">${ news.getTitle() }</h5>
 								<p class="card-text">${ news.getText() }</p>
@@ -26,17 +24,18 @@
 					</c:forEach>
 				</div>
 
-				<div class="col-3">
+				<div class="col-4">
 					<h3>Events</h3>
 					<c:forEach var="event" items="${ requestScope.event }">
 						<div class="card bg-light mb-3">
 							<div class="card-header">${ event.getTitle() }</div>
 							<div class="card-body">
-								<p class="card-text">${ event.getText() }</p>
-								<p class="card-text">${ event.getDate() }</p>
+								<p class="card-text">${ event.getText() } <br>
+									<small>${ event.getDate() }</small>
+								</p>
 
 								<c:if test="${ sessionScope.user != null && sessionScope.user.getIsAdmin() }">
-									<a class="delete-event text-danger" href="#" data-id="${ event.getId() }">Delete</a>
+									<a class="delete-event text-danger" href="#" data-id="${ event.getId() }">Delete</a> | 
 									<a href="/event/edit?id=${ event.getId() }">Edit</a>
 								</c:if>
 
@@ -57,7 +56,7 @@
 				event.preventDefault();
 				$.ajax({
 					method: 'GET',
-					url: '/event/delete?id=' + event.target.dataset.id,
+					url: 'event/delete?id=' + event.target.dataset.id,
 					success: function(resp){
 					}
 				});
@@ -66,7 +65,7 @@
 				event.preventDefault();
 				$.ajax({
 					method: 'GET',
-					url: '/news/delete?id=' + event.target.dataset.id,
+					url: 'news/delete?id=' + event.target.dataset.id,
 					success: function(resp){
 					}
 				});

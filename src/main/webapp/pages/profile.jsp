@@ -8,6 +8,7 @@ User user = (User) request.getSession().getAttribute("user");
 <html>
 	<%@ include file='../includes/head.jsp' %>
 	<body>
+		<%@ include file='../includes/header.jsp' %>
 		<div class='container mt-4'>
 			<h1>Profile page</h1>
 		</div>		

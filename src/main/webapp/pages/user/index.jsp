@@ -3,6 +3,7 @@
 <html>
 	<%@ include file='../../includes/head.jsp' %>
 	<body>
+		<%@ include file='../../includes/header.jsp' %>
 		<div class='container-md mt-4'>
 			<h1>Users page</h1>
 
