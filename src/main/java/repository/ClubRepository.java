@@ -72,7 +72,7 @@ public class ClubRepository implements IClubRepository {
 		sql += " WHERE id = ?";
 		try {
 			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
-			int i = 0;
+			int i = 1;
 			if(entity.getTitle() != null){
 				stmt.setString(i++, entity.getTitle());
 			}
@@ -82,7 +82,7 @@ public class ClubRepository implements IClubRepository {
 			stmt.setLong(i++, entity.getId());
 			if(stmt.executeUpdate() > 0) return true;
 		} catch(SQLException e){
-			System.out.println("Bad request");
+			e.printStackTrace();
 		}
 		sql = sql.substring(0, sql.length() - 1);
 		return false;

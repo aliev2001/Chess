@@ -88,8 +88,10 @@ public class NewsController extends HttpServlet {
 
 	private void editNewsAction(HttpServletRequest request){
 		News news = new News();
+		long id = Long.parseLong(request.getParameter("id"));
 		String title = request.getParameter("title");	
 		String text = request.getParameter("text");
+		news.setId(id);
 		news.setTitle(title);
 		news.setText(text);
 		newsService.edit(news);

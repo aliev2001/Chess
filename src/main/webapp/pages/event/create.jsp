@@ -9,6 +9,7 @@ To change this template use File | Settings | File Templates.
 <html>
 	<%@ include file='../../includes/head.jsp' %>
 	<body>
+		<%@ include file='../../includes/header.jsp' %>
 
 		<div class="container-md mt-4">
 			<h1>Event create</h1>

@@ -89,7 +89,7 @@ public class UserRepository implements IUserRepository {
 		sql += " WHERE id = ?";
 		try {
 			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
-			int i = 0;
+			int i = 1;
 			if(entity.getName() != null){
 				stmt.setString(i++, entity.getName());
 			}

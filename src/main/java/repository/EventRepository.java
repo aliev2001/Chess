@@ -78,7 +78,7 @@ public class EventRepository implements IEventRepository {
 		sql += " WHERE id = ?";
 		try {
 			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
-			int i = 0;
+			int i = 1;
 			if(entity.getTitle() != null){
 				stmt.setString(i++, entity.getTitle());
 			}

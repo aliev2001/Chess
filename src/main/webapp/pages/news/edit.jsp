@@ -3,10 +3,13 @@
 <html>
 	<%@ include file='../../includes/head.jsp' %>
 	<body>
+		<%@ include file='../../includes/header.jsp' %>
+
 		<div class='container-md mt-4'>
 			<h1>Edit news</h1>
 			<form method="POST" action="/news/edit">
 				<%@ include file='../../includes/message.jsp' %>
+				<input type="text" name="id" value="${ requestScope.user.getId() }" hidden>
 				<div class="form-group">
 					<input type="text" name="title" placeholder="Title" value="${ requestScope.user.getTitle() }" class="form-control">
 				</div>

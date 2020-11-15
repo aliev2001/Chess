@@ -7,6 +7,3 @@ target/
 .vimspector.json
 src/main/webapp/assets/scss/*
 src/main/webapp/assets/img/*
-src/main/webapp/context.xml
-src/main/webapp/META-INF/context.xml
-
