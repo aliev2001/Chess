@@ -11,8 +11,7 @@
 					<input type="text" name="title" placeholder="Title" class="form-control">
 				</div>
 				<div class="form-group">
-					<textarea name="text" class="form-control" placeholder="Text">
-					</textarea>
+					<textarea name="text" class="form-control" placeholder="Text"></textarea>
 				</div>
 				<input type="submit" class="btn btn-primary" value="Create">
 			</form>

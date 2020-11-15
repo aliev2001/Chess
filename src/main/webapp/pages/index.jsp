@@ -5,7 +5,7 @@
 		<div class='container-fluid mt-4'>
 
 			<div class="row">
-				<div class="col-2" style="background: red">
+				<div class="col-2">
 					<h3>Sidebar</h3>
 				</div>
 				<div class="col-7">
@@ -17,10 +17,9 @@
 								<p class="card-text">${ news.getText() }</p>
 							</div>
 						</div>
-					<h3>Test</h3>
 					</c:forEach>
 				</div>
-				<div class="col-3" style="background: green">
+				<div class="col-3">
 					<h3>Events</h3>
 					<c:forEach var="event" items="${ requestScope.event }">
 						<div class="card bg-light mb-3">
@@ -28,6 +27,12 @@
 							<div class="card-body">
 								<p class="card-text">${ event.getText() }</p>
 								<p class="card-text">${ event.getDate() }</p>
+
+								<c:if test="${ sessionScope.user != null && sessionScope.user.getIsAdmin() }">
+									<a class="delete text-danger" href="#" data-id="${ event.getId() }">Delete</a>
+									<a href="/news/edit?id=${ event.getId() }">Edit</a>
+								</c:if>
+
 							</div>
 						</div>
 					</c:forEach>
@@ -36,6 +41,20 @@
 
 		</div>
 
+		<form id="lol"></form>
+
 		<%@ include file='../includes/footer.jsp' %>
+
+		<script>
+		  $('a.delete').click(function(event){
+				event.preventDefault();
+				$.ajax({
+					method: 'GET',
+					url: '/news/delete?id=' + event.target.dataset.id,
+					success: function(resp){
+					}
+				});
+			})
+		</script>
 	</body>
 </html>

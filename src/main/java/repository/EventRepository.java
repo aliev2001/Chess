@@ -33,7 +33,7 @@ public class EventRepository implements IEventRepository {
 
 	@Override
 	public boolean create(Event entity) {
-		String sql = "INSERT INTO event (tite, description, \"date\") VALUES (?, ?, ?)";
+		String sql = "INSERT INTO event (title, \"text\", \"date\") VALUES (?, ?, ?)";
 		try {
 			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
 			stmt.setString(1, entity.getTitle());
@@ -42,7 +42,7 @@ public class EventRepository implements IEventRepository {
 
 			if(stmt.executeUpdate() > 0) return true;
 		} catch(SQLException e){
-			System.out.println("Bad request");
+			e.printStackTrace();
 		}
 		return false;
 	}

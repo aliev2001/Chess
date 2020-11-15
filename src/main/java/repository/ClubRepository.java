@@ -31,7 +31,7 @@ public class ClubRepository implements IClubRepository {
 
 	@Override
 	public boolean create(Club entity) {
-		String sql = "INSERT INTO club (tite, description) VALUES (?, ?)";
+		String sql = "INSERT INTO club (title, description) VALUES (?, ?)";
 		try {
 			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
 			stmt.setString(1, entity.getTitle());
