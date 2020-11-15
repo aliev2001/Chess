@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import model.News;
 import repository.NewsRepository;
 import repository.interfaces.INewsRepository;
@@ -27,5 +29,10 @@ public class NewsService implements INewsService {
 	@Override
 	public boolean edit(News user) {
 		return newsRepository.edit(user);
+	}
+
+	@Override
+	public List<News> getAll() {
+		return newsRepository.getAll();
 	}
 }

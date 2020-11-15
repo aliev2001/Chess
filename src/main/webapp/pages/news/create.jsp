@@ -1,16 +1,23 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Zangar
-  Date: 15.11.2020
-  Time: 13:18
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+	<%@ include file='../../includes/head.jsp' %>
+	<body>
+		<div class='container-md mt-4'>
+			<h1>Create news</h1>
+			<form method="POST" action="/news/create">
+				<%@ include file='../../includes/message.jsp' %>
+				<div class="form-group">
+					<input type="text" name="title" placeholder="Title" class="form-control">
+				</div>
+				<div class="form-group">
+					<textarea name="text" class="form-control" placeholder="Text">
+					</textarea>
+				</div>
+				<input type="submit" class="btn btn-primary" value="Create">
+			</form>
+		</div>
 
-</body>
+		<%@ include file='../../includes/footer.jsp' %>
+	</body>
 </html>

@@ -1,16 +1,15 @@
 package repository;
 
-import model.Club;
 import model.Event;
 import repository.interfaces.IDBRepository;
 import repository.interfaces.IEventRepository;
 
-import javax.ws.rs.BadRequestException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class EventRepository implements IEventRepository {
 
@@ -99,16 +98,23 @@ public class EventRepository implements IEventRepository {
 	}
 
 	@Override
-	public List<Event> getAllEvent() {
+	public Queue<Event> getAll() {
 		String sql = "SELECT * FROM event";
+		Queue<Event> events = new LinkedList<>();
 		try {
 			Statement stmt = dbRepository.getConnection().createStatement();
-			stmt.execute(sql);
-
-		} catch (SQLException e) {
-			throw new BadRequestException("Cannot run SQL statement: " + e.getSQLState());
-
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				events.add(new Event(
+							rs.getLong("id"),
+							rs.getString("title"),
+							rs.getString("text"),
+							rs.getDate("date")
+						));
+			}
+		} catch(SQLException e){
+			e.printStackTrace();
 		}
-		return null;
+		return events;
 	}
 }

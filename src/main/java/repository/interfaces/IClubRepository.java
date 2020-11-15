@@ -1,9 +1,9 @@
 package repository.interfaces;
 
+import java.util.Set;
+
 import model.Club;
 
-import java.util.List;
-
 public interface IClubRepository extends IEntityRepository<Club> {
-    List<Club> getAllClub();
+	Set<Club> getAll();
 }

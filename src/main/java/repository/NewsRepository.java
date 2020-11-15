@@ -4,11 +4,11 @@ import model.News;
 import repository.interfaces.IDBRepository;
 import repository.interfaces.INewsRepository;
 
-import javax.ws.rs.BadRequestException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewsRepository implements INewsRepository {
@@ -97,16 +97,23 @@ public class NewsRepository implements INewsRepository {
 	}
 
 	@Override
-	public List<News> getAllNews() {
+	public List<News> getAll() {
 		String sql = "SELECT * FROM news";
+		List<News> news = new ArrayList<>();
 		try {
 			Statement stmt = dbRepository.getConnection().createStatement();
-			stmt.execute(sql);
-
-		} catch (SQLException e) {
-			throw new BadRequestException("Cannot run SQL statement: " + e.getSQLState());
-
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				news.add(new News(
+					rs.getLong("id"),
+					rs.getString("title"),
+					rs.getString("text"),
+					rs.getDate("date")
+				));
+			}
+		} catch(SQLException e){
+			e.printStackTrace();
 		}
-		return null;
+		return news;
 	}
 }

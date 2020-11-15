@@ -1,5 +1,7 @@
 package	service.interfaces;
 
+import java.util.Queue;
+
 import model.Event;
 
 public interface IEventService {
@@ -7,4 +9,6 @@ public interface IEventService {
 	boolean create(Event user);
 	boolean delete(long id);
 	boolean edit(Event user);
+
+	Queue<Event> getAll();
 }

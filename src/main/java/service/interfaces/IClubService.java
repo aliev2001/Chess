@@ -1,5 +1,7 @@
 package	service.interfaces;
 
+import java.util.Set;
+
 import model.Club;
 
 public interface IClubService {
@@ -7,4 +9,6 @@ public interface IClubService {
 	boolean create(Club user);
 	boolean delete(long id);
 	boolean edit(Club user);
+
+	Set<Club> getAll();
 }

@@ -1,5 +1,7 @@
 package service;
 
+import java.util.Queue;
+
 import model.Event;
 import repository.EventRepository;
 import repository.interfaces.IEventRepository;
@@ -27,5 +29,10 @@ public class EventService implements IEventService {
 	@Override
 	public boolean edit(Event user) {
 		return eventRepository.edit(user);
+	}
+
+	@Override
+	public Queue<Event> getAll() {
+		return eventRepository.getAll();
 	}
 }

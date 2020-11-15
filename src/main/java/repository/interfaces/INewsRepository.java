@@ -1,9 +1,9 @@
 package repository.interfaces;
 
-import model.News;
-
 import java.util.List;
 
+import model.News;
+
 public interface INewsRepository extends IEntityRepository<News> {
-    List<News> getAllNews();
+	List<News> getAll();
 }

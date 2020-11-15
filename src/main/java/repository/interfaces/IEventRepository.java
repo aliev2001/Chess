@@ -1,9 +1,9 @@
 package repository.interfaces;
 
+import java.util.Queue;
+
 import model.Event;
 
-import java.util.List;
-
 public interface IEventRepository extends IEntityRepository<Event> {
-    List<Event> getAllEvent();
+	Queue<Event> getAll();
 }

@@ -1,7 +1,8 @@
 package service;
 
+import java.util.Set;
+
 import model.Club;
-import model.User;
 import repository.ClubRepository;
 import repository.interfaces.IClubRepository;
 import service.interfaces.IClubService;
@@ -29,6 +30,11 @@ public class ClubService implements IClubService {
 	@Override
 	public boolean edit(Club user) {
 		return clubRepository.edit(user);
+	}
+
+	@Override
+	public Set<Club> getAll() {
+		return clubRepository.getAll();
 	}
 
 }
