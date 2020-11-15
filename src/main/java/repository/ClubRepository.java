@@ -4,9 +4,12 @@ import model.Club;
 import repository.interfaces.IClubRepository;
 import repository.interfaces.IDBRepository;
 
+import javax.ws.rs.BadRequestException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
 
 public class ClubRepository implements IClubRepository {
 
@@ -83,5 +86,18 @@ public class ClubRepository implements IClubRepository {
 		}
 		sql = sql.substring(0, sql.length() - 1);
 		return false;
+	}
+
+	@Override
+	public List<Club> getAllClub() {
+		String sql = "SELECT * FROM club";
+		try {
+			Statement stmt = dbRepository.getConnection().createStatement();
+			stmt.execute(sql);
+
+		} catch (SQLException e) {
+			throw new BadRequestException("Cannot run SQL statement: " + e.getSQLState());
+		}
+		return null;
 	}
 }

@@ -5,6 +5,8 @@ public class Club {
 	public String title;
 	public String description;
 
+	public Club(){}
+
 	public Club(long id, String title, String description) {
 		this.id = id;
 		this.title = title;

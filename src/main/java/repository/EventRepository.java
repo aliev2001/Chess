@@ -5,9 +5,12 @@ import model.Event;
 import repository.interfaces.IDBRepository;
 import repository.interfaces.IEventRepository;
 
+import javax.ws.rs.BadRequestException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
 
 public class EventRepository implements IEventRepository {
 
@@ -93,5 +96,19 @@ public class EventRepository implements IEventRepository {
 		}
 		sql = sql.substring(0, sql.length() - 1);
 		return false;
+	}
+
+	@Override
+	public List<Event> getAllEvent() {
+		String sql = "SELECT * FROM event";
+		try {
+			Statement stmt = dbRepository.getConnection().createStatement();
+			stmt.execute(sql);
+
+		} catch (SQLException e) {
+			throw new BadRequestException("Cannot run SQL statement: " + e.getSQLState());
+
+		}
+		return null;
 	}
 }

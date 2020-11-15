@@ -8,6 +8,8 @@ public class Event {
 	public String text;
 	public Date date;
 
+	public Event(){}
+
 	public Event(long id, String title, String text, Date date) {
 		this.id = id;
 		this.title = title;
