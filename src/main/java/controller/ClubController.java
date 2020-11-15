@@ -57,6 +57,7 @@ public class ClubController extends HttpServlet {
 	  String route = request.getPathInfo();
 		if(route != null) route = route.replaceAll("\\/$", "").replaceAll("^\\/", "");
 		else route = "";
+		int id = 0;
 		switch(route){
 			case "read":
 				break;
@@ -68,6 +69,11 @@ public class ClubController extends HttpServlet {
 				request.getRequestDispatcher("/pages/club/edit.jsp").forward(request, response);
 				break;
 			case "delete":
+				if(request.getParameter("id") != null) id = Integer.parseInt(request.getParameter("id"));
+				else id = 0;
+				System.out.println(id);
+				clubService.delete(id);
+				request.getRequestDispatcher("/pages/club/index.jsp").forward(request, response);
 				break;
 			default:
 				request.setAttribute("clubs", clubService.getAll());

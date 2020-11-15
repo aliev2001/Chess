@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.News;
-import repository.NewsRepository;
 import service.NewsService;
 import service.interfaces.INewsService;
 

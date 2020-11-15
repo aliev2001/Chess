@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 public class ClubRepository implements IClubRepository {
 
@@ -111,7 +112,7 @@ public class ClubRepository implements IClubRepository {
 
 	@Override
 	public boolean addUserToClub(long userId, long clubId) {
-		String sql = "INSERT INTO users_clubs_mapping (userId, clubId) VALUES (?, ?)";
+		String sql = "INSERT INTO users_clubs_mapping (\"userId\", \"clubId\") VALUES (?, ?)";
 		try {
 			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
 			stmt.setLong(1,userId );
@@ -119,14 +120,14 @@ public class ClubRepository implements IClubRepository {
 
 			if(stmt.executeUpdate() > 0) return true;
 		} catch(SQLException e){
-			System.out.println("Bad request");
+			e.printStackTrace();
 		}
 		return false;
 	}
 
 	@Override
 	public boolean deleteUserFromClub(long userId, long clubID) {
-		String sql = "DELETE FROM users_clubs_mapping WHERE userId = ? and clubId = ?";
+		String sql = "DELETE FROM users_clubs_mapping WHERE \"userId\" = ? and \"clubId\" = ?";
 		try {
 			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
 			stmt.setLong(1, userId);
@@ -135,8 +136,29 @@ public class ClubRepository implements IClubRepository {
 				return true;
 			}
 		} catch(SQLException e){
-			System.out.println("Bad request");
+			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public Stack<Club> getUserClubs(long userId) {
+		String sql = "SELECT c.id as id, c.title as title, c.description as description FROM club c INNER JOIN users_clubs_mapping um ON um.\"userId\" = ?";
+		Stack<Club> clubs = new Stack<>();
+		try {
+			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
+			stmt.setLong(1, userId);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				clubs.add(new Club(
+					rs.getLong("id"),
+					rs.getString("title"),
+					rs.getString("description")
+				));
+			}
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+		return clubs;
 	}
 }

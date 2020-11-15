@@ -1,6 +1,7 @@
 package	service.interfaces;
 
 import java.util.Set;
+import java.util.Stack;
 
 import model.Club;
 
@@ -11,4 +12,5 @@ public interface IClubService {
 	boolean edit(Club user);
 
 	Set<Club> getAll();
+	Stack<Club> getUserClubs(long userId);
 }

@@ -14,7 +14,7 @@
 							<h5 class="card-title">${ club.getTitle() }</h5>
 							<p class="card-text">${ club.getDescription() }</p>
 							<a class="delete text-danger" href="#" data-id="${ club.getId() }">Delete</a>
-							<a class="join text-success" href="#" data-id="${ sessionScope.user.getId() }">Join</a>
+							<a class="join text-success" href="#" data-id="${ club.getId() }">Join</a>
 						</div>
 					</div>
 				</c:forEach>
@@ -27,10 +27,17 @@
 																														 $('a.delete').click(function(event){
 																														 event.preventDefault();
 																														 $.ajax({
-																														 url: '/club/delete?id' + event.target.dataset.id
-																														 method: 'get'
+																														 method: 'GET',
+																														 url: 'club/delete?id=' + event.target.dataset.id
 																														 });
 																														 })
+																										$('a.join').click(function(event){
+																											event.preventDefault();
+																										$.ajax({
+																										method: 'POST',
+																										url: '/api/club/addMember/${ sessionScope.user.getId() }/' + event.target.dataset.id
+																										});
+																										})
 		</script>
 	</body>
 </html>

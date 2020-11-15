@@ -1,6 +1,7 @@
 package service;
 
 import java.util.Set;
+import java.util.Stack;
 
 import model.Club;
 import repository.ClubRepository;
@@ -35,6 +36,11 @@ public class ClubService implements IClubService {
 	@Override
 	public Set<Club> getAll() {
 		return clubRepository.getAll();
+	}
+
+	@Override
+	public Stack<Club> getUserClubs(long userId) {
+		return clubRepository.getUserClubs(userId);
 	}
 
 }
