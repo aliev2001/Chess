@@ -50,7 +50,7 @@
 				event.preventDefault();
 				$.ajax({
 					method: 'GET',
-					url: '/news/delete?id=' + event.target.dataset.id,
+					url: '/event/delete?id=' + event.target.dataset.id,
 					success: function(resp){
 					}
 				});

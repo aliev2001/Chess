@@ -5,8 +5,6 @@ import repository.EventRepository;
 import repository.interfaces.IEventRepository;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -22,7 +20,8 @@ public class EventController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String route = request.getPathInfo().replaceAll("\\/$", "").replaceAll("^\\/", "");
+		String route = request.getPathInfo();
+		if(route != null) route = route.replaceAll("\\/$", "").replaceAll("^\\/", "");
 		switch(route){
 			case "read":
 				int id1 = Integer.parseInt(request.getParameter("id"));
@@ -63,10 +62,10 @@ public class EventController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String route = request.getPathInfo().replaceAll("\\/$", "").replaceAll("^\\/", "");
+		String route = request.getPathInfo();
+		if(route != null) route = route.replaceAll("\\/$", "").replaceAll("^\\/", "");
 		switch(route){
 			case "read":
-
 				break;
 			case "create":
 				request.getRequestDispatcher("/pages/event/create.jsp").forward(request, response);
@@ -75,7 +74,9 @@ public class EventController extends HttpServlet {
 				request.getRequestDispatcher("/pages/event/edit.jsp").forward(request, response);
 				break;
 			case "delete":
-
+				int id = Integer.parseInt(request.getParameter("id"));
+				System.out.println("DELET "  + id);
+				eventRepository.delete(id);
 				break;
 			default:
 				break;
