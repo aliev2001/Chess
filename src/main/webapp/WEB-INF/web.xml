@@ -56,6 +56,14 @@
         <servlet-name>user</servlet-name>
 				<url-pattern>/user/*</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>club</servlet-name>
+        <servlet-class>controller.ClubController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>club</servlet-name>
+        <url-pattern>/club/*</url-pattern>
+    </servlet-mapping>
 
     <error-page>
         <error-code>401</error-code>
