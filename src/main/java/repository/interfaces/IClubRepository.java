@@ -7,5 +7,5 @@ import model.Club;
 public interface IClubRepository extends IEntityRepository<Club> {
 	Set<Club> getAll();
 	boolean addUserToClub(long userId, long clubId);
-	boolean deleteUserFromClub(long userId);
+	boolean deleteUserFromClub(long userId, long clubID);
 }

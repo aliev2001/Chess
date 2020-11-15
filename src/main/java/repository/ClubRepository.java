@@ -124,11 +124,12 @@ public class ClubRepository implements IClubRepository {
 	}
 
 	@Override
-	public boolean deleteUserFromClub(long userId) {
-		String sql = "DELETE FROM users_clubs_mapping WHERE userId = ?";
+	public boolean deleteUserFromClub(long userId, long clubID) {
+		String sql = "DELETE FROM users_clubs_mapping WHERE userId = ? and clubId = ?";
 		try {
 			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
 			stmt.setLong(1, userId);
+			stmt.setLong(2, clubID);
 			if(stmt.executeUpdate() > 0){
 				return true;
 			}

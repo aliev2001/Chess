@@ -10,6 +10,6 @@
 		maxIdle="4"
 		url="jdbc:postgresql://localhost:5432/j2a"
 		username="postgres"
-		password=""
+		password="root"
 	/>
 </Context>
