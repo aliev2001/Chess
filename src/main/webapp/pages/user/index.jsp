@@ -8,10 +8,19 @@
 			<h1>Users page</h1>
 
 			<form method="POST" action="/user">
+				<div class="row">
+				<div class="col">
 				<input type="text" name="group" class="form-control" value='<%= request.getParameter("group") == null ? "" : request.getParameter("group") %>' placeholder="Group">
+				</div>
+				<div class="col">
 				<input type="text" name="major" class="form-control" value='<%= request.getParameter("major") == null ? "" : request.getParameter("major") %>' placeholder="Major">
+				</div>
+
+				<div class="col">
 				<input type="number" name="year" class="form-control" value='<%= request.getParameter("year") == null ? "" : request.getParameter("year") %>' placeholder="Year">
-				<input type="submit" class="btn btn-primary" value="search">
+				</div>
+				</div>
+				<input type="submit" class="btn btn-primary btn-block mt-3" value="search">
 			</form>
 
 			<hr>
@@ -26,7 +35,7 @@
 								Major: ${ user.getMajor() }<br>
 								Group: ${ user.getUGroup() }
 							</p>
-							<a href="#" class="">Delete</a>
+							<a class="text-danger delete" href="" data-id="${ user.getId() }">Delete</a>
 						</div>
 					</div>
 				</c:forEach>
@@ -35,5 +44,14 @@
 		</div>
 
 		<%@ include file='../../includes/footer.jsp' %>
+	<script>
+																						$('a.delete').click(function(event){
+																						event.preventDefault();
+																						$.ajax({
+																										method: 'GET',
+																										url: '/user/delete?id=' + event.target.dataset.id
+																						});
+																						})
+	</script>
 	</body>
 </html>

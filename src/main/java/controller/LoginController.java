@@ -4,6 +4,7 @@ import model.User;
 import service.UserService;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +32,9 @@ public class LoginController extends HttpServlet {
       User user = userService.login(username, password);
       if(user != null){
         HttpSession session = request.getSession();
+				Cookie ck = new Cookie("user", user.getUsername());
         session.setAttribute("user", user);
+				response.addCookie(ck);
         response.sendRedirect(request.getContextPath() + "/profile");
         return;
       } else {

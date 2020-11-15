@@ -9,9 +9,9 @@
 
 			<div class="card-group">
 				<c:forEach var="club" items="${ requestScope.clubs }">
-					<div class="card pt-3" style="max-width: 18rem; display: inline-block;">
+					<div class="card" style="max-width: 18rem; display: inline-block;">
 						<div class="card-body">
-							<h5 class="card-title">${ club.getTitle() }</h5>
+							<h5 class="card-title"><strong>${ club.getTitle() }</strong></h5>
 							<p class="card-text">${ club.getDescription() }</p>
 							<a class="delete text-danger" href="#" data-id="${ club.getId() }">Delete</a>
 							<a class="join text-success" href="#" data-id="${ club.getId() }">Join</a>

@@ -25,12 +25,16 @@ public class UserController extends HttpServlet {
 		if(route != null) route = route.replaceAll("\\/$", "").replaceAll("^\\/", "");
 		else route = "";
 
+		int id = 0;
 		switch(route){
 			case "create":
 				path += "create.jsp";
 				break;
 			case "delete":
-				break;	
+				if(request.getParameter("id") != null) id = Integer.parseInt(request.getParameter("id"));
+				else id = 0;
+				userRepository.delete(id);
+				path += "index.jsp";
 			case "edit":
 				path += "edit.jsp";
 				break;
