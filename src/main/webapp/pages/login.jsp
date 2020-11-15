@@ -16,7 +16,6 @@
 					<input type='password' name='password' class='form-control' placeholder='Password'>
 				</div>
 				<input type='submit' class='btn btn-primary' value='Login'>
-				<a href='register'>Register</a>
 			</form>
 		</div>
 

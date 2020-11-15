@@ -25,7 +25,7 @@ To change this template use File | Settings | File Templates.
 				<div class="form-group">
 					<textarea name="text" placeholder="Text" class="form-control">${ requestScope.event.getText() }</textarea>
 				</div>
-				<input type="submit" class="btn btn-primary" value="Create">
+				<input type="submit" class="btn btn-primary" value="Edit">
 			</form>
 		</div>
 

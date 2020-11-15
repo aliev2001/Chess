@@ -1,8 +1,8 @@
 package controller;
 
 import model.Club;
-import repository.ClubRepository;
-import repository.interfaces.IClubRepository;
+import service.ClubService;
+import service.interfaces.IClubService;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ClubController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private final IClubRepository clubRepository = new ClubRepository();
+	private final IClubService clubService = new ClubService();
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,15 +24,14 @@ public class ClubController extends HttpServlet {
 		switch(route){
 			case "read":
 				int id1 = Integer.parseInt(request.getParameter("id"));
-				clubRepository.read(id1);
+				clubService.read(id1);
 				break;
 
 			case "create":
 				Club club = new Club();
 				club.setTitle(request.getParameter("title"));
 				club.setDescription(request.getParameter("description"));
-
-				clubRepository.create(club);
+				clubService.create(club);
 				break;
 
 			case "edit":
@@ -40,12 +39,12 @@ public class ClubController extends HttpServlet {
 				clubedit.setTitle(request.getParameter("title"));
 				clubedit.setDescription(request.getParameter("description"));
 
-				clubRepository.edit(clubedit);
+				clubService.edit(clubedit);
 				break;
 
 			case "delete":
 				int id = Integer.parseInt(request.getParameter("id"));
-				clubRepository.delete(id);
+				clubService.delete(id);
 				break;
 			default:
 				break;
@@ -68,11 +67,11 @@ public class ClubController extends HttpServlet {
 			case "edit":
 				request.getRequestDispatcher("/pages/club/edit.jsp").forward(request, response);
 				break;
-
 			case "delete":
-
 				break;
 			default:
+				request.setAttribute("clubs", clubService.getAll());
+				request.getRequestDispatcher("/pages/club/index.jsp").forward(request, response);
 				break;
 		}
 		// request.getRequestDispatcher("pages/club.jsp").forward(request, response);

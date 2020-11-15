@@ -24,20 +24,22 @@
      	 	  </li>
 					<c:if test="${ sessionScope.user.getIsAdmin() }">
 						<li class="nav-item">
-     	 	  	  <a class="nav-link" href="/user">Students</a>
-     	 	  	</li>
+							<a class="nav-link" href="/user">Students</a>
+						</li>
 						<li class="nav-item">
-     	 	  	  <a class="nav-link" href="/user/create">Add student</a>
-     	 	  	</li>
-						<li class="nav-item">
-     	 	  	  <a class="nav-link" href="/news/create">Add news</a>
-     	 	  	</li>
-						<li class="nav-item">
-     	 	  	  <a class="nav-link" href="/event/create">Add event</a>
-     	 	  	</li>
-						<li class="nav-item">
-     	 	  	  <a class="nav-link" href="/club/create">Create club</a>
-     	 	  	</li>
+							<a class="nav-link" href="/club">Clubs</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Add
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="nav-link" href="/user/create">Student</a>
+								<a class="nav-link" href="/news/create">News</a>
+								<a class="nav-link" href="/event/create">Event</a>
+								<a class="nav-link" href="/club/create">Club</a>
+							</div>
+						</li>
 					</c:if>
 				</c:otherwise>
 			</c:choose>
@@ -45,7 +47,7 @@
 		<ul class="navbar-nav">
 				<c:if test="${ sessionScope.user != null }">
 				  <li class="nav-item">
-     	 	    <a class="nav-link" href="/logot">Logout</a>
+     	 	    <a class="nav-link" href="/logout">Logout</a>
      	 	  </li>
 				</c:if>
 		</ul>

@@ -31,7 +31,6 @@
 					<input type='text' name='uGroup' class='form-control' placeholder='Group'>
 				</div>
 				<input type='submit' class='btn btn-primary' value='Register'>
-				<a href='login'>Login</a>
 			</form>
 		</div>
 
