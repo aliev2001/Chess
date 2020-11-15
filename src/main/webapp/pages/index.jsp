@@ -15,10 +15,17 @@
 							<div class="card-body">
 								<h5 class="card-title">${ news.getTitle() }</h5>
 								<p class="card-text">${ news.getText() }</p>
+
+								<c:if test="${ sessionScope.user != null && sessionScope.user.getIsAdmin() }">
+									<a class="delete-news text-danger" href="#" data-id="${ news.getId() }">Delete</a>
+									<a href="/news/edit?id=${ news.getId() }">Edit</a>
+								</c:if>
+
 							</div>
 						</div>
 					</c:forEach>
 				</div>
+
 				<div class="col-3">
 					<h3>Events</h3>
 					<c:forEach var="event" items="${ requestScope.event }">
@@ -29,8 +36,8 @@
 								<p class="card-text">${ event.getDate() }</p>
 
 								<c:if test="${ sessionScope.user != null && sessionScope.user.getIsAdmin() }">
-									<a class="delete text-danger" href="#" data-id="${ event.getId() }">Delete</a>
-									<a href="/news/edit?id=${ event.getId() }">Edit</a>
+									<a class="delete-event text-danger" href="#" data-id="${ event.getId() }">Delete</a>
+									<a href="/event/edit?id=${ event.getId() }">Edit</a>
 								</c:if>
 
 							</div>
@@ -46,11 +53,20 @@
 		<%@ include file='../includes/footer.jsp' %>
 
 		<script>
-		  $('a.delete').click(function(event){
+		  $('a.delete-event').click(function(event){
 				event.preventDefault();
 				$.ajax({
 					method: 'GET',
 					url: '/event/delete?id=' + event.target.dataset.id,
+					success: function(resp){
+					}
+				});
+			})
+		  $('a.delete-news').click(function(event){
+				event.preventDefault();
+				$.ajax({
+					method: 'GET',
+					url: '/news/delete?id=' + event.target.dataset.id,
 					success: function(resp){
 					}
 				});

@@ -4,6 +4,7 @@
     <meta charset='utf-8'>
 		<title><c:out value="${ requestScope.title }" /></title>
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='../assets/css/paper-kit.css'>
     <style>
         body {
             font-size: 0.9em;
