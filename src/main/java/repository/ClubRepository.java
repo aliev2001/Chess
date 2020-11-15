@@ -143,7 +143,7 @@ public class ClubRepository implements IClubRepository {
 
 	@Override
 	public Stack<Club> getUserClubs(long userId) {
-		String sql = "SELECT c.id as id, c.title as title, c.description as description FROM users_clubs_mapping um INNER JOIN club c ON um.\"userId\" = ?";
+		String sql = "SELECT c.id as id, c.title as title, c.description as description FROM users_clubs_mapping um INNER JOIN club c ON um.\"clubId\" = c.id WHERE um.\"userId\" = ?";
 		Stack<Club> clubs = new Stack<>();
 		try {
 			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
