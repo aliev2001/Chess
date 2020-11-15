@@ -7,6 +7,9 @@ import repository.interfaces.INewsRepository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewsRepository implements INewsRepository {
 
@@ -91,5 +94,26 @@ public class NewsRepository implements INewsRepository {
 		}
 		sql = sql.substring(0, sql.length() - 1);
 		return false;
+	}
+
+	@Override
+	public List<News> getAll() {
+		String sql = "SELECT * FROM news";
+		List<News> news = new ArrayList<>();
+		try {
+			Statement stmt = dbRepository.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				news.add(new News(
+					rs.getLong("id"),
+					rs.getString("title"),
+					rs.getString("text"),
+					rs.getDate("date")
+				));
+			}
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+		return news;
 	}
 }

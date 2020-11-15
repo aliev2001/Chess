@@ -5,8 +5,11 @@ import repository.interfaces.IClubRepository;
 import repository.interfaces.IDBRepository;
 
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ClubRepository implements IClubRepository {
 
@@ -83,5 +86,25 @@ public class ClubRepository implements IClubRepository {
 		}
 		sql = sql.substring(0, sql.length() - 1);
 		return false;
+	}
+
+	@Override
+	public Set<Club> getAll() {
+		String sql = "SELECT * FROM news";
+		Set<Club> clubs = new HashSet<>();
+		try {
+			Statement stmt = dbRepository.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				clubs.add(
+					new Club(rs.getLong("id"),
+						rs.getString("title"),
+						rs.getString("description")
+					));
+			}
+		} catch(SQLException e){
+			System.out.println("Something went wrong");
+		}
+		return clubs;
 	}
 }

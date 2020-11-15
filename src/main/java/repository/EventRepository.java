@@ -1,6 +1,5 @@
 package repository;
 
-import model.Club;
 import model.Event;
 import repository.interfaces.IDBRepository;
 import repository.interfaces.IEventRepository;
@@ -8,6 +7,9 @@ import repository.interfaces.IEventRepository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class EventRepository implements IEventRepository {
 
@@ -93,5 +95,26 @@ public class EventRepository implements IEventRepository {
 		}
 		sql = sql.substring(0, sql.length() - 1);
 		return false;
+	}
+
+	@Override
+	public Queue<Event> getAll() {
+		String sql = "SELECT * FROM event";
+		Queue<Event> events = new LinkedList<>();
+		try {
+			Statement stmt = dbRepository.getConnection().createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				events.add(new Event(
+							rs.getLong("id"),
+							rs.getString("title"),
+							rs.getString("text"),
+							rs.getDate("date")
+						));
+			}
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+		return events;
 	}
 }
