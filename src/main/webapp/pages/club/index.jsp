@@ -9,11 +9,12 @@
 
 			<div class="card-group">
 				<c:forEach var="club" items="${ requestScope.clubs }">
-					<div class="card pt-3 border-0">
+					<div class="card pt-3" style="max-width: 18rem; display: inline-block;">
 						<div class="card-body">
 							<h5 class="card-title">${ club.getTitle() }</h5>
 							<p class="card-text">${ club.getDescription() }</p>
-							<a href="#" class="">Delete</a>
+							<a class="delete text-danger" href="#" data-id="${ club.getId() }">Delete</a>
+							<a class="join text-success" href="#" data-id="${ sessionScope.user.getId() }">Join</a>
 						</div>
 					</div>
 				</c:forEach>
@@ -22,7 +23,14 @@
 		</div>
 
 		<%@ include file='../../includes/footer.jsp' %>
-	<script>
-	</script>
+		<script>
+																														 $('a.delete').click(function(event){
+																														 event.preventDefault();
+																														 $.ajax({
+																														 url: '/club/delete?id' + event.target.dataset.id
+																														 method: 'get'
+																														 });
+																														 })
+		</script>
 	</body>
 </html>

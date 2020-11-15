@@ -90,20 +90,21 @@ public class ClubRepository implements IClubRepository {
 
 	@Override
 	public Set<Club> getAll() {
-		String sql = "SELECT * FROM news";
+		String sql = "SELECT * FROM club";
 		Set<Club> clubs = new HashSet<>();
 		try {
 			Statement stmt = dbRepository.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				clubs.add(
-					new Club(rs.getLong("id"),
+					new Club(
+						rs.getLong("id"),
 						rs.getString("title"),
 						rs.getString("description")
 					));
 			}
 		} catch(SQLException e){
-			System.out.println("Something went wrong");
+			e.printStackTrace();
 		}
 		return clubs;
 	}
