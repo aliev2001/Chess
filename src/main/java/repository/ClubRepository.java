@@ -107,4 +107,34 @@ public class ClubRepository implements IClubRepository {
 		}
 		return clubs;
 	}
+
+	@Override
+	public boolean addUserToClub(long userId, long clubId) {
+		String sql = "INSERT INTO users_clubs_mapping (userId, clubId) VALUES (?, ?)";
+		try {
+			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
+			stmt.setLong(1,userId );
+			stmt.setLong(2,clubId);
+
+			if(stmt.executeUpdate() > 0) return true;
+		} catch(SQLException e){
+			System.out.println("Bad request");
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteUserFromClub(long userId) {
+		String sql = "DELETE FROM users_clubs_mapping WHERE userId = ?";
+		try {
+			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
+			stmt.setLong(1, userId);
+			if(stmt.executeUpdate() > 0){
+				return true;
+			}
+		} catch(SQLException e){
+			System.out.println("Bad request");
+		}
+		return false;
+	}
 }
