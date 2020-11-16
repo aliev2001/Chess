@@ -1,0 +1,22 @@
+{
+	"configurations": {
+		"Java Attach": {
+			"default": true,
+			"adapter": {
+				"name": "vscode-java",
+				"port": "${AdapterPort}"
+			},
+			"configuration": {
+				"request": "attach",
+				"host": "127.0.0.1",
+				"port": "5005"
+			},
+			"breakpoints": {
+				"exception": {
+					"caught": "N",
+					"uncaught": "N"
+				}
+			}
+		}
+	}
+}
