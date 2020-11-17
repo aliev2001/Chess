@@ -17,6 +17,12 @@ public class Event {
 		this.date = date;
 	}
 
+	public Event(String title, String text, Date date) {
+		this.title = title;
+		this.text = text;
+		this.date = date;
+	}
+
 	public long getId() {
 		return id;
 	}
