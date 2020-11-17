@@ -14,7 +14,6 @@ To change this template use File | Settings | File Templates.
 		<div class="container-md mt-4">
 			<h1>Club create</h1>
 			<form method="POST" action="/club/create">
-				<%@ include file='../../includes/message.jsp' %>
 				<div class="form-group">
 					<input type="text" name="title" placeholder="Title" class="form-control">
 				</div>

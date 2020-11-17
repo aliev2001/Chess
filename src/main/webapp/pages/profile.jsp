@@ -8,6 +8,12 @@ User user = (User) request.getSession().getAttribute("user");
 %>
 <html>
 	<%@ include file='../includes/head.jsp' %>
+<style>
+	.card-groups {
+		display: grid;
+		grid-template-columns: 25% 25% 25% 25%;
+	}
+</style>
 	<body>
 		<%@ include file='../includes/header.jsp' %>
 		<div class='container mt-4'>
@@ -31,9 +37,10 @@ User user = (User) request.getSession().getAttribute("user");
 			request.setAttribute("_clubs",cc.getUserClubs(user.getId()));
 			%>
 
-			<div class="card-group">
+			<div class="card-groups">
 				<c:forEach var="club" items="${requestScope._clubs}">
-				<div class="card" style="max-width: 18rem; display: inline-block;">
+				<div class="card" style="margin: 10px !important">
+					<img class="card-img-top" src="${ club.getImage() }" alt="">
 					<div class="card-body">
 						<h5 class="card-title"><strong>${ club.getTitle() }</strong></h5>
 						<p class="card-text">${ club.getDescription() }</p>

@@ -11,6 +11,6 @@ public interface IClubService {
 	boolean delete(long id);
 	boolean edit(Club user);
 
-	Set<Club> getAll();
+Set<Club> getAll();
 	Stack<Club> getUserClubs(long userId);
 }

@@ -20,7 +20,10 @@
 						<div class="card-body">
 							<h5 class="card-title"><strong>${ club.getTitle() }</strong></h5>
 							<p class="card-text">${ club.getDescription() }</p>
-							<a class="delete text-danger" href="#" data-id="${ club.getId() }">Delete</a> | 
+							<c:if test="${ sessionScope.user != null && sessionScope.user.getIsAdmin() }">
+								<a class="delete text-danger" href="#" data-id="${ club.getId() }">Delete</a> | 
+								<a class="edit text-primary" href="/club/edit?id=${ club.getId() }">Edit</a> | 
+							</c:if>
 							<a class="join text-success" href="#" data-id="${ club.getId() }">Join</a>
 						</div>
 					</div>

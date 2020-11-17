@@ -6,6 +6,7 @@ import model.User;
 
 public interface IUserRepository extends IEntityRepository<User> {
   User getUserByLogin(String username, String password);
+	User getUserByUsername(String username);
 
 	List<User> getAll();
 	List<User> getAllByGroup(String group);

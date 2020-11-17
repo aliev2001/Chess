@@ -63,7 +63,7 @@ public class ClubRepository implements IClubRepository {
 
 	@Override
 	public boolean edit(Club entity) {
-		String sql = "UPDATE clubs SET ";
+		String sql = "UPDATE club SET ";
 		if(entity.getTitle() != null){
 			sql += "title=?,";
 		}

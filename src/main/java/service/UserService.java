@@ -17,6 +17,11 @@ public class UserService implements IUserService {
   }
 
 	@Override
+	public User read(String username) {
+		return userRepository.getUserByUsername(username);
+	}
+
+	@Override
   public boolean create(User user){
     return userRepository.create(user);
   }

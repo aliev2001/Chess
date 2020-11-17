@@ -7,7 +7,6 @@
 		<div class="container-md mt-4">
 			<h1>Event create</h1>
 			<form method="POST" action="/event/create">
-				<%@ include file='../../includes/message.jsp' %>
 				<div class="form-group">
 					<input type="text" name="title" placeholder="Title" class="form-control">
 				</div>

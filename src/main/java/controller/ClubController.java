@@ -37,6 +37,7 @@ public class ClubController extends HttpServlet {
 
 			case "edit":
 				Club clubedit = new Club();
+				clubedit.setId(Long.parseLong(request.getParameter("id")));
 				clubedit.setTitle(request.getParameter("title"));
 				clubedit.setImage(request.getParameter("image"));
 				clubedit.setDescription(request.getParameter("description"));
@@ -68,6 +69,9 @@ public class ClubController extends HttpServlet {
 				request.getRequestDispatcher("/pages/club/create.jsp").forward(request, response);
 				break;
 			case "edit":
+				if(request.getParameter("id") != null) id = Integer.parseInt(request.getParameter("id"));
+				else id = 0;
+				request.setAttribute("club", clubService.read(id));
 				request.getRequestDispatcher("/pages/club/edit.jsp").forward(request, response);
 				break;
 			case "delete":

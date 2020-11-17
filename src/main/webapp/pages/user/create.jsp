@@ -8,7 +8,6 @@
 			<h1>Add student</h1>
 			<form method="POST" action="/user/create">
 
-				<%@ include file='../../includes/message.jsp' %>
 				<div class="form-group">
 					<input type="text" name="name" placeholder="Name" class="form-control">
 				</div>

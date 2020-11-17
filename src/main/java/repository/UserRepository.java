@@ -277,4 +277,17 @@ public class UserRepository implements IUserRepository {
 		}
 		return users;
 	}
+
+	@Override
+	public User getUserByUsername(String username) {
+    String sql = "SELECT * FROM users WHERE username = ?";
+    try {
+      PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
+      stmt.setString(1, username);
+
+      ResultSet rs = stmt.executeQuery();
+      if (rs.next()) return createUserByResultSet(rs);
+    } catch(SQLException e){ System.out.println("Bad request"); }
+    return null;
+	}
 }

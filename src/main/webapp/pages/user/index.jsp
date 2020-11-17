@@ -2,6 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 	<%@ include file='../../includes/head.jsp' %>
+<style>
+	.card-groups {
+		display: grid;
+		grid-template-columns: 20% 20% 20% 20% 20%;
+	}
+</style>
 	<body>
 		<%@ include file='../../includes/header.jsp' %>
 		<div class='container-md mt-4'>
@@ -20,12 +26,12 @@
 				<input type="number" name="year" class="form-control" value='<%= request.getParameter("year") == null ? "" : request.getParameter("year") %>' placeholder="Year">
 				</div>
 				</div>
-				<input type="submit" class="btn btn-primary btn-block mt-3" value="search">
+				<input type="submit" class="btn btn-primary btn-block mt-3" value="Search">
 			</form>
 
 			<hr>
 
-			<div class="card-group text-center">
+			<div class="card-groups text-center">
 				<c:forEach var="user" items="${ requestScope.users }">
 					<div class="card pt-3 border-0">
 						<img class="rounded-circle mx-auto d-block" width=150 height=150 src="https://via.placeholder.com/150x150" alt="Image">
@@ -33,7 +39,8 @@
 							<h5 class="card-title">${ user.getName() } ${ user.getSurname() }<br><small class="text-secondary">${ user.getUsername() }</small></h5>
 							<p class="card-text">
 								Major: ${ user.getMajor() }<br>
-								Group: ${ user.getUGroup() }
+								Group: ${ user.getUGroup() }<br>
+								Year: ${ user.getYear() }
 							</p>
 							<a class="text-danger delete" href="" data-id="${ user.getId() }">Delete</a>
 						</div>
