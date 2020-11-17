@@ -13,7 +13,7 @@ import service.NewsService;
 import service.interfaces.INewsService;
 
 
-@WebServlet(urlPatterns = "/news/*")
+
 public class NewsController extends HttpServlet {
 
 	/**
