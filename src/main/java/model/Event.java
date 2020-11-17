@@ -3,10 +3,10 @@ package model;
 import java.sql.Date;
 
 public class Event {
-	public long id;
-	public String title;
-	public String text;
-	public Date date;
+	private long id;
+	private String title;
+	private String text;
+	private Date date;
 
 	public Event(){}
 

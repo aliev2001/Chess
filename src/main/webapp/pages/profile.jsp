@@ -46,13 +46,13 @@ User user = (User) request.getSession().getAttribute("user");
 		</div>		
 		<%@ include file='../includes/footer.jsp' %>
 		<script>
-																								 $('a.join').click(function(event){
-																								 event.preventDefault();
-																								 $.ajax({
-																								 method: 'POST',
-																								 url: '/api/club/removeMember/${ sessionScope.user.getId() }/' + event.target.dataset.id
-																								 });
-																								 })
+			 $('a.join').click(function(event){
+				 event.preventDefault();
+				 $.ajax({
+					 method: 'POST',
+					 url: '/api/club/removeMember/${ sessionScope.user.getId() }/' + event.target.dataset.id
+				 });
+			 })
 		</script>
 	</body>
 </html>

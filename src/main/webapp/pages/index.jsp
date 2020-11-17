@@ -23,7 +23,7 @@
 								<p class="card-text">${ news.getText() }</p>
 
 								<c:if test="${ sessionScope.user != null && sessionScope.user.getIsAdmin() }">
-									<a class="delete-news text-danger" href="#" data-id="${ news.getId() }">Delete</a>
+									<a class="delete-news text-danger" href="#" data-id="${ news.getId() }">Delete</a> | 
 									<a href="/news/edit?id=${ news.getId() }">Edit</a>
 								</c:if>
 

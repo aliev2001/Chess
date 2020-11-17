@@ -12,7 +12,7 @@ To change this template use File | Settings | File Templates.
 		<%@ include file='../../includes/header.jsp' %>
 
 		<div class="container-md mt-4">
-			<h1>Club create</h1>
+			<h1>Edit create</h1>
 			<form method="POST" action="/club/create">
 				<%@ include file='../../includes/message.jsp' %>
 				<div class="form-group">
