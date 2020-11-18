@@ -38,14 +38,14 @@
 																														 event.preventDefault();
 																														 $.ajax({
 																														 method: 'GET',
-																														 url: '/SecondPractice_war/club/delete?id=' + event.target.dataset.id
+																														 url: '<%=request.getContextPath()%>/club/delete?id=' + event.target.dataset.id
 																														 });
 																														 })
 																										$('a.join').click(function(event){
 																											event.preventDefault();
 																										$.ajax({
 																										method: 'POST',
-																										url: '/SecondPractice_war/api/club/addMember/${ sessionScope.user.getId() }/' + event.target.dataset.id
+																										url: '<%=request.getContextPath()%>/api/club/addMember/${ sessionScope.user.getId() }/' + event.target.dataset.id
 																										});
 																										})
 		</script>

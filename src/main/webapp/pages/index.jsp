@@ -64,7 +64,7 @@
 				event.preventDefault();
 				$.ajax({
 					method: 'GET',
-					url: '/SecondPractice_war/event/delete?id=' + event.target.dataset.id,
+					url: '<%=request.getContextPath()%>/event/delete?id=' + event.target.dataset.id,
 					success: function(resp){
 					}
 				});
@@ -73,7 +73,7 @@
 				event.preventDefault();
 				$.ajax({
 					method: 'GET',
-					url: '/SecondPractice_war/news/delete?id=' + event.target.dataset.id,
+					url: '<%=request.getContextPath()%>/news/delete?id=' + event.target.dataset.id,
 					success: function(resp){
 					}
 				});

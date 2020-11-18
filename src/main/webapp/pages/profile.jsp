@@ -57,7 +57,7 @@ User user = (User) request.getSession().getAttribute("user");
 				 event.preventDefault();
 				 $.ajax({
 					 method: 'POST',
-					 url: '/SecondPractice_war/api/club/removeMember/${ sessionScope.user.getId() }/' + event.target.dataset.id
+					 url: '<%=request.getContextPath()%>/api/club/removeMember/${ sessionScope.user.getId() }/' + event.target.dataset.id
 				 });
 			 })
 		</script>

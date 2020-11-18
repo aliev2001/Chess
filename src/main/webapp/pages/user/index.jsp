@@ -56,7 +56,7 @@
 																						event.preventDefault();
 																						$.ajax({
 																										method: 'GET',
-																										url: '/SecondPractice_war/user/delete?id=' + event.target.dataset.id
+																										url: '<%=request.getContextPath()%>/user/delete?id=' + event.target.dataset.id
 																						});
 																						})
 	</script>
