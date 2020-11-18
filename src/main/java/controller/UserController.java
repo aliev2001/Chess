@@ -35,6 +35,8 @@ public class UserController extends HttpServlet {
 				else id = 0;
 				userRepository.delete(id);
 				path += "index.jsp";
+				break;
+				// commit
 			case "edit":
 				path += "edit.jsp";
 				break;
