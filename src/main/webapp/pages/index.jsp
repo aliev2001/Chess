@@ -24,7 +24,7 @@
 
 								<c:if test="${ sessionScope.user != null && sessionScope.user.getIsAdmin() }">
 									<a class="delete-news text-danger" href="#" data-id="${ news.getId() }">Delete</a> | 
-									<a href="/news/edit?id=${ news.getId() }">Edit</a>
+									<a href="<%=request.getContextPath()%>/news/edit?id=${ news.getId() }">Edit</a>
 								</c:if>
 
 							</div>
@@ -44,7 +44,7 @@
 
 								<c:if test="${ sessionScope.user != null && sessionScope.user.getIsAdmin() }">
 									<a class="delete-event text-danger" href="#" data-id="${ event.getId() }">Delete</a> | 
-									<a href="/event/edit?id=${ event.getId() }">Edit</a>
+									<a href="<%=request.getContextPath()%>/event/edit?id=${ event.getId() }">Edit</a>
 								</c:if>
 
 							</div>
@@ -64,7 +64,7 @@
 				event.preventDefault();
 				$.ajax({
 					method: 'GET',
-					url: 'event/delete?id=' + event.target.dataset.id,
+					url: '/SecondPractice_war/event/delete?id=' + event.target.dataset.id,
 					success: function(resp){
 					}
 				});
@@ -73,7 +73,7 @@
 				event.preventDefault();
 				$.ajax({
 					method: 'GET',
-					url: 'news/delete?id=' + event.target.dataset.id,
+					url: '/SecondPractice_war/news/delete?id=' + event.target.dataset.id,
 					success: function(resp){
 					}
 				});

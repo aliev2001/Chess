@@ -7,7 +7,7 @@
 
 		<div class='container-md mt-4'>
 			<h1>Edit news</h1>
-			<form method="POST" action="/news/edit">
+			<form method="POST" action="<%=request.getContextPath()%>/news/edit">
 				<%@ include file='../../includes/message.jsp' %>
 				<input type="text" name="id" value="${ requestScope.user.getId() }" hidden>
 				<div class="form-group">

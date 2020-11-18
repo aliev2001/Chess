@@ -13,7 +13,7 @@
 		<div class='container-md mt-4'>
 			<h1>Users page</h1>
 
-			<form method="POST" action="/user">
+			<form method="POST" action="<%=request.getContextPath()%>/user">
 				<div class="row">
 				<div class="col">
 				<input type="text" name="group" class="form-control" value='<%= request.getParameter("group") == null ? "" : request.getParameter("group") %>' placeholder="Group">
@@ -56,7 +56,7 @@
 																						event.preventDefault();
 																						$.ajax({
 																										method: 'GET',
-																										url: '/user/delete?id=' + event.target.dataset.id
+																										url: '/SecondPractice_war/user/delete?id=' + event.target.dataset.id
 																						});
 																						})
 	</script>

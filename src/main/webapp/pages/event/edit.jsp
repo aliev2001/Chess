@@ -13,7 +13,7 @@ To change this template use File | Settings | File Templates.
 
 		<div class="container-md mt-4">
 			<h1>Event edit</h1>
-			<form method="POST" action="/event/edit">
+			<form method="POST" action="<%=request.getContextPath()%>/event/edit">
 				<%@ include file='../../includes/message.jsp' %>
 				<input type="text" name="id" value="${ requestScope.event.getId() }" hidden>
 				<div class="form-group">

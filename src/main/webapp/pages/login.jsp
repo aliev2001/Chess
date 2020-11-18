@@ -7,7 +7,7 @@
 			<div class="row">
 				<div class="col-md-3">
 				<h1>Login page</h1>
-				<form action='login' method='post'>
+				<form action='<%=request.getContextPath()%>/login' method='post'>
 
 					<%@ include file='../includes/message.jsp' %>
 

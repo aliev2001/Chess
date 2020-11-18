@@ -6,7 +6,7 @@
 
 		<div class="container-md mt-4">
 			<h1>Event create</h1>
-			<form method="POST" action="/event/create">
+			<form method="POST" action="<%=request.getContextPath()%>/event/create">
 				<div class="form-group">
 					<input type="text" name="title" placeholder="Title" class="form-control">
 				</div>

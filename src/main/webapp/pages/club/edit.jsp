@@ -13,7 +13,7 @@ To change this template use File | Settings | File Templates.
 
 		<div class="container-md mt-4">
 			<h1>Edit create</h1>
-			<form method="POST" action="/club/edit">
+			<form method="POST" action="<%=request.getContextPath()%>/club/edit">
 				<%@ include file='../../includes/message.jsp' %>
 				<input type="text" name="id" value="${ requestScope.club.getId() }" hidden>
 				<div class="form-group">

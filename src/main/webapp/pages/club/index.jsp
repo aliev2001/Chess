@@ -22,7 +22,7 @@
 							<p class="card-text">${ club.getDescription() }</p>
 							<c:if test="${ sessionScope.user != null && sessionScope.user.getIsAdmin() }">
 								<a class="delete text-danger" href="#" data-id="${ club.getId() }">Delete</a> | 
-								<a class="edit text-primary" href="/club/edit?id=${ club.getId() }">Edit</a> | 
+								<a class="edit text-primary" href="<%=request.getContextPath()%>/club/edit?id=${ club.getId() }">Edit</a> |
 							</c:if>
 							<a class="join text-success" href="#" data-id="${ club.getId() }">Join</a>
 						</div>
@@ -38,14 +38,14 @@
 																														 event.preventDefault();
 																														 $.ajax({
 																														 method: 'GET',
-																														 url: 'club/delete?id=' + event.target.dataset.id
+																														 url: '/SecondPractice_war/club/delete?id=' + event.target.dataset.id
 																														 });
 																														 })
 																										$('a.join').click(function(event){
 																											event.preventDefault();
 																										$.ajax({
 																										method: 'POST',
-																										url: '/api/club/addMember/${ sessionScope.user.getId() }/' + event.target.dataset.id
+																										url: '/SecondPractice_war/api/club/addMember/${ sessionScope.user.getId() }/' + event.target.dataset.id
 																										});
 																										})
 		</script>

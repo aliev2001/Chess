@@ -6,7 +6,7 @@
 		<%@ include file='../../includes/header.jsp' %>
 		<div class='container-md mt-4'>
 			<h1>Add student</h1>
-			<form method="POST" action="/user/create">
+			<form method="POST" action="<%=request.getContextPath()%>/user/create">
 
 				<div class="form-group">
 					<input type="text" name="name" placeholder="Name" class="form-control">
