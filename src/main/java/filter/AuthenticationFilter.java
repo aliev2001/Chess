@@ -23,8 +23,7 @@ public class AuthenticationFilter implements Filter {
 	public void init(FilterConfig filterConfig) throws ServletException {
 		// Filter.super.init(filterConfig);
 		homeURI = filterConfig.getServletContext().getContextPath() + "/";
-		profileURI = homeURI + "profile";
-		clubURI = homeURI + "club";
+		profileURI = homeURI + "home";
 	}
 
   @Override
@@ -43,20 +42,21 @@ public class AuthenticationFilter implements Filter {
 				}
 				break;
 			}
-		}	
+		}
 
 		if(request.getSession().getAttribute("user") != null){
 			User user = (User) request.getSession().getAttribute("user");
-			if(!user.getIsAdmin()){
 				if(!path.contains(profileURI) && !path.contains(homeURI) && !path.contains(clubURI)){
 					response.sendError(401);
 					return;
 				}
-			}
-		} else {
-			request.getRequestDispatcher("/login").forward(request, response);
-			return;
-		}
+
+		} //else if (request.getSession().getAttribute("user") == null) {
+		//	request.getRequestDispatcher("/register").forward(request, response);
+		//}else {
+		//	request.getRequestDispatcher("/login").forward(request, response);
+		//	return;
+		//}
 
     if(path.endsWith(".jsp")){
       response.sendError(404);

@@ -25,9 +25,6 @@ public class RegisterController extends HttpServlet {
 		String surname = request.getParameter("surname");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		int year = Integer.parseInt(request.getParameter("year"));
-		String major = request.getParameter("major");
-		String uGroup = request.getParameter("uGroup");
 
 		String message = "";
 
@@ -37,9 +34,6 @@ public class RegisterController extends HttpServlet {
 				.setSurname(surname)
 				.setUsername(username)
 				.setPassword(password)
-				.setYear(year)
-				.setMajor(major)
-				.setUGroup(uGroup)
 				.build();
 			if(userService.create(user)){
 				message = "Account was created. Now you can login";

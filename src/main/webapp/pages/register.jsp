@@ -21,15 +21,6 @@
 				<div class='form-group'>
 					<input type='password' name='password' class='form-control' placeholder='Password'>
 				</div>
-				<div class='form-group'>
-					<input type='number' name='year' class='form-control' placeholder='Year'>
-				</div>
-				<div class='form-group'>
-					<input type='text' name='major' class='form-control' placeholder='Major'>
-				</div>
-				<div class='form-group'>
-					<input type='text' name='uGroup' class='form-control' placeholder='Group'>
-				</div>
 				<input type='submit' class='btn btn-primary' value='Register'>
 			</form>
 		</div>

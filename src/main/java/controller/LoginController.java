@@ -35,7 +35,12 @@ public class LoginController extends HttpServlet {
 				Cookie ck = new Cookie("user", user.getUsername());
         session.setAttribute("user", user);
 				response.addCookie(ck);
-        response.sendRedirect(request.getContextPath() + "/profile");
+
+		//
+				response.sendRedirect(request.getContextPath() + "/create");
+        //
+
+
         return;
       } else {
         message = "Username or password is incorrect";

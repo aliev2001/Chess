@@ -16,16 +16,13 @@ public class UserRepository implements IUserRepository {
 
 	@Override
 	public boolean create(User user){
-		String sql = "INSERT INTO users (name, surname, username, password, year, major, \"uGroup\") VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO users (name, surname, username, password) VALUES (?, ?, ?, ?)";
 		try {
 			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
 			stmt.setString(1, user.getName());
 			stmt.setString(2, user.getSurname());
 			stmt.setString(3, user.getUsername());
 			stmt.setString(4, user.getPassword());
-			stmt.setInt(5, user.getYear());
-			stmt.setString(6, user.getMajor());
-			stmt.setString(7, user.getUGroup());
 			if(stmt.executeUpdate() > 0) return true;
 		} catch(SQLException e){
 			System.out.println("Bad request");
@@ -76,15 +73,6 @@ public class UserRepository implements IUserRepository {
 		if(entity.getPassword() != null){
 			sql += "password=?,";
 		}
-		if(entity.getYear() != 0){
-			sql += "year=?,";
-		}
-		if(entity.getMajor() != null){
-			sql += "major=?,";
-		}
-		if(entity.getUGroup() != null){
-			sql += "\"uGroup\"=?,";
-		}
 		sql = sql.substring(0, sql.length() - 1);
 		sql += " WHERE id = ?";
 		try {
@@ -101,15 +89,6 @@ public class UserRepository implements IUserRepository {
 			}
 			if(entity.getPassword() != null){
 				stmt.setString(i++, entity.getPassword());
-			}
-			if(entity.getYear() != 0){
-				stmt.setInt(i++, entity.getYear());
-			}
-			if(entity.getMajor() != null){
-				stmt.setString(i++, entity.getMajor());
-			}
-			if(entity.getUGroup() != null){
-				stmt.setString(i++, entity.getUGroup());
 			}
 			stmt.setLong(i++, entity.getId());
       if(stmt.executeUpdate() > 0) return true;
@@ -154,88 +133,6 @@ public class UserRepository implements IUserRepository {
 		return users;
 	}
 
-	@Override
-	public List<User> getAllByGroup(String group) {
-		List<User> users = new ArrayList<>();
-		String sql = "SELECT * FROM users WHERE group = ?";
-		try {
-			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
-			stmt.setString(1, group);
-			ResultSet rs = stmt.executeQuery(sql);
-			while(rs.next()){
-				users.add(createUserByResultSet(rs));
-			}
-		} catch(SQLException e){
-			System.out.println(e);
-		}
-		return users;
-	}
-
-	@Override
-	public List<User> getAllByMajor(String major) {
-		List<User> users = new ArrayList<>();
-		String sql = "SELECT * FROM users WHERE major = ?";
-		try {
-			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
-			stmt.setString(1, major);
-			ResultSet rs = stmt.executeQuery(sql);
-			while(rs.next()){
-				users.add(createUserByResultSet(rs));
-			}
-		} catch(SQLException e){
-			System.out.println(e);
-		}
-		return users;
-	}
-
-	@Override
-	public List<User> getAllbyYear(int year) {
-		List<User> users = new ArrayList<>();
-		String sql = "SELECT * FROM users WHERE year = ?";
-		try {
-			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
-			stmt.setInt(1, year);
-			ResultSet rs = stmt.executeQuery(sql);
-			while(rs.next()){
-				users.add(createUserByResultSet(rs));
-			}
-		} catch(SQLException e){
-			System.out.println(e);
-		}
-		return users;
-	}
-
-	@Override
-	public List<String> getGroups() {
-		List<String> groups = new ArrayList<>();
-		String sql = "SELECT distinct group FROM users";
-		try {
-			Statement stmt = dbRepository.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while(rs.next()){
-				groups.add(rs.getString("group"));
-			}
-		} catch(SQLException e){
-			System.out.println("BAD BAD GIRL");
-		}
-		return groups;
-	}
-
-	@Override
-	public List<String> getMajors() {
-		List<String> majors = new ArrayList<>();
-		String sql = "SELECT distinct major FROM users";
-		try {
-			Statement stmt = dbRepository.getConnection().createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while(rs.next()){
-				majors.add(rs.getString("major"));
-			}
-		} catch(SQLException e){
-			System.out.println("BAD BAD REQUEST");
-		}
-		return majors;
-	}
 
   protected User createUserByResultSet(ResultSet rs) throws SQLException {
     return new User.UserBuilder()
@@ -244,38 +141,7 @@ public class UserRepository implements IUserRepository {
             .setSurname(rs.getString("surname"))
             .setUsername(rs.getString("username"))
             .setPassword(rs.getString("password"))
-						.setMajor(rs.getString("major"))
-						.setYear(rs.getInt("year"))
-						.setUGroup(rs.getString("uGroup"))
-						.setIsAdmin(rs.getBoolean("isAdmin"))
 						.build();
-	}
-
-	@Override
-	public List<User> search(String group, String major, int year) {
-		String sql = "SELECT * FROM users WHERE \"uGroup\"~*? AND major~*?";
-		if(year != 0){
-			sql += " AND year=?";
-		}
-		List<User> users = new ArrayList<>();
-		try {
-			PreparedStatement stmt = dbRepository.getConnection().prepareStatement(sql);
-			if(group != null) stmt.setString(1, group);
-			else stmt.setString(1, ".*");
-
-			if(major != null) stmt.setString(2, major);
-			else stmt.setString(2, ".*");
-
-			if(year != 0) stmt.setInt(3, year);
-
-			ResultSet rs = stmt.executeQuery();
-			while(rs.next()){
-				users.add(createUserByResultSet(rs));
-			}
-		} catch(SQLException e){
-			e.printStackTrace();
-		}
-		return users;
 	}
 
 	@Override

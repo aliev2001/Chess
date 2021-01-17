@@ -14,10 +14,4 @@ public interface IUserService {
 
 	// Additional		
 	List<User> getAll();
-	List<User> getAllByGroup(String group);
-	List<User> getAllByMajor(String major);
-	List<User> getAllbyYear(int year);
-
-	List<String> getGroups();
-	List<String> getMajors();
 }

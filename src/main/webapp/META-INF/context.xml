@@ -8,7 +8,7 @@
 		driverClassName="org.postgresql.Driver"
 		maxActive="10"
 		maxIdle="4"
-		url="jdbc:postgresql://localhost:5432/j2a"
+		url="jdbc:postgresql://localhost:5432/assignment2"
 		username="postgres"
 		password="1234"
 	/>

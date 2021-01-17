@@ -46,28 +46,4 @@ public class UserService implements IUserService {
 		return userRepository.getAll();
 	}
 
-	@Override
-	public List<User> getAllByGroup(String group) {
-		return userRepository.getAllByGroup(group);
-	}
-
-	@Override
-	public List<User> getAllByMajor(String major) {
-		return userRepository.getAllByMajor(major);
-	}
-
-	@Override
-	public List<User> getAllbyYear(int year) {
-		return userRepository.getAllbyYear(year);
-	}
-
-	@Override
-	public List<String> getGroups() {
-		return userRepository.getGroups();
-	}
-
-	@Override
-	public List<String> getMajors() {
-		return userRepository.getMajors();
-	}
 }

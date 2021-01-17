@@ -49,7 +49,7 @@ public class UserController extends HttpServlet {
 				}
 
 				System.out.println(group + major + year);
-				request.setAttribute("users", userRepository.search(group, major, year));
+				//request.setAttribute("users", userRepository.search(group, major, year));
 				path += "index.jsp";
 		}
 
@@ -95,9 +95,6 @@ public class UserController extends HttpServlet {
 				.setSurname(request.getParameter("surname"))
 				.setUsername(request.getParameter("username"))
 				.setPassword(request.getParameter("password"))
-				.setMajor(request.getParameter("major"))
-				.setYear(Integer.parseInt(request.getParameter("year")))
-				.setUGroup(request.getParameter("group"))
 				.build());
 	}
 }
